@@ -1,0 +1,5 @@
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
+importFrom("stats", pbeta, qt, runif)
+useDynLib(dng, .registration = TRUE)
+export(splitt_mean, splitt_var, splitt_skewness, splitt_kurtosis, dsplitt, psplitt, qsplitt, rsplitt)
