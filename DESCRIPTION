@@ -1,6 +1,6 @@
 Package: dng
-Version: 0.1.0
-Date: 2017-09-16
+Version: 0.1.1
+Date: 2017-11-22
 Title: Distributions and Gradients
 Type: Package
 Author: Feng Li, Jiayue Zeng
@@ -14,6 +14,6 @@ LazyData: true
 Imports: stats, Rcpp (>= 0.12.9)
 LinkingTo: Rcpp
 NeedsCompilation: yes
-Packaged: 2017-09-20 01:48:28 UTC; Zeng
+Packaged: 2017-11-22 07:59:28 UTC; Zeng
 Repository: CRAN
-Date/Publication: 2017-09-20 08:17:07 UTC
+Date/Publication: 2017-11-22 11:16:29 UTC

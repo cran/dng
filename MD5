@@ -1,4 +1,4 @@
-000f9ba64bff919c21ce757f6ca04a68 *DESCRIPTION
+7346983bbeeff0eddad774dc980eed3c *DESCRIPTION
 38231d659451664e57444ce43cdb795a *NAMESPACE
 2c0e8477e7af60f2b33ed9ab0620442f *R/RcppExports.R
 b14b80a05f0465c4c680f97b22b54954 *inst/NEWS
@@ -8,7 +8,7 @@ b14b80a05f0465c4c680f97b22b54954 *inst/NEWS
 a27d9d5192930299ed67a78f2dd708ea *man/rsplitt.Rd
 002313adca4c027dcc67d1f448a7a6f1 *man/split-t.Rd
 cc58d287324dffc38b92b14175833ecb *src/RcppExports.cpp
-2900242eaa8213008a4a18dbe1054e73 *src/rcpp_dsplitt.cpp
+0cfc1b9ecb61cf6635bfe9d11db5b9ed *src/rcpp_dsplitt.cpp
 2749edcdd5ad1197dde1d92462da99f3 *src/rcpp_kurtosis.cpp
 a24b8a8b13892cd82f933a9598a14369 *src/rcpp_mean.cpp
 a96900d1ff7c2ac5faaefbdcb3162a4b *src/rcpp_psplitt.cpp
