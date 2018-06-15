@@ -1,10 +1,11 @@
 #include <Rcpp.h>
 using namespace Rcpp;
-
+//' @describeIn splitt_moments Skewness for the split-t distribution.
+//' @export
 // [[Rcpp::export]]
 NumericVector splitt_skewness(NumericVector df, NumericVector phi, NumericVector lmd)
 {
-  int a[3];
+  IntegerVector a(3);
   int n,i,j;
   a[0] = df.size();
   a[1] = phi.size();
@@ -34,4 +35,3 @@ NumericVector splitt_skewness(NumericVector df, NumericVector phi, NumericVector
   }
   return skewness;
 }
-

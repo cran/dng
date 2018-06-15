@@ -1,9 +1,9 @@
 #include <Rcpp.h>
 using namespace Rcpp;
-//' @describeIn splitt Randon variables from the split-t distribution.
+//' @describeIn splitn Randon variables from the split-normal distribution.
 //' @export
 // [[Rcpp::export]]
-NumericVector rsplitt(int n, NumericVector mu, NumericVector df, NumericVector phi, NumericVector lmd)
+NumericVector rsplitn(int n, NumericVector mu, NumericVector sigma, NumericVector lmd)
 {
   int i;
   NumericVector u(n),out(n);
@@ -13,14 +13,12 @@ NumericVector rsplitt(int n, NumericVector mu, NumericVector df, NumericVector p
   }
 
   mu = rep_len(mu, n);
-  df = rep_len(df, n);
-  phi = rep_len(phi, n);
+  sigma = rep_len(sigma, n);
   lmd = rep_len(lmd, n);
 
   NumericVector mu_long(n),df_long(n),phi_long(n),lmd_long(n);
   NumericVector I0(n),I(n);
   NumericVector p0std(n), y0std(n);
-
 
   for(i = 0;i<n;i++)
   {
@@ -29,20 +27,18 @@ NumericVector rsplitt(int n, NumericVector mu, NumericVector df, NumericVector p
     if(I0[i])
     {
       p0std[i] = u[i]*(1+lmd[i])/2;
-      y0std[i] = R::qt(p0std[i], df[i], TRUE, FALSE);
-      out[i] = y0std[i]*phi[i]+mu[i] ;
+      y0std[i] = R::qnorm5(p0std[i],mu[i], sigma[i], TRUE, FALSE);
+      out[i] = y0std[i]*sigma[i]+mu[i] ;
     }
 
     else
     {
       p0std[i] = (u[i]-1/(1+lmd[i]))*(1+lmd[i])/(2*lmd[i])+0.5;
-      y0std[i] = R::qt(p0std[i], df[i], TRUE, FALSE);
-      out[i] = y0std[i]*(phi[i]*lmd[i])+mu[i] ;
+      y0std[i] = R::qnorm5(p0std[i], mu[i],sigma[i], TRUE, FALSE);
+      out[i] = y0std[i]*(sigma[i]*lmd[i])+mu[i] ;
     }
 
   }
-
-
 
 
   return out;
