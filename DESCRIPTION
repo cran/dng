@@ -1,7 +1,7 @@
 Package: dng
 Type: Package
 Title: Distributions and Gradients
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(
     person("Jiayue", "Zeng", role = c("aut", "cre"), email = "zengjiayue@126.com"),
     person("Feng", "Li", role = c("aut"), email = "feng.li@cufe.edu.cn")
@@ -17,13 +17,13 @@ BugReports: https://github.com/feng-li/dng/issues
 URL: https://github.com/feng-li/dng/
 Encoding: UTF-8
 LazyData: true
-Imports: stats, Rcpp (>= 0.12.9)
+Imports: Rcpp (>= 0.12.9)
 LinkingTo: Rcpp
 Suggests: testthat
 RoxygenNote: 6.0.1
 NeedsCompilation: yes
-Packaged: 2018-05-31 16:06:25 UTC; Zeng
+Packaged: 2018-06-18 09:57:09 UTC; Zeng
 Author: Jiayue Zeng [aut, cre],
   Feng Li [aut]
 Repository: CRAN
-Date/Publication: 2018-06-15 07:22:54 UTC
+Date/Publication: 2018-06-27 08:56:13 UTC
