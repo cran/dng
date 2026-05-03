@@ -25,7 +25,9 @@
 #' @param logarithm logical; if TRUE, probabilities p are given as log(p).
 #' @return \code{dsplitn} gives the density; \code{psplitn} gives the percentile;
 #' \code{qsplitn} gives the quantile; and \code{rsplitn} gives the random
-#' variables. Invalid arguments will result in return value NaN, with a warning.
+#' variables. \code{gsplitn} returns a list with elements \code{u} and \code{d}
+#' containing gradients of the CDF and log-density. Invalid arguments will result
+#' in return value NaN, with a warning.
 #'
 #' The numerical arguments other than n are recycled to the length of the
 #' result. Only the first elements of the logical arguments are used.
@@ -88,7 +90,9 @@ dsplitn <- function(x, mu, sigma, lmd, logarithm) {
 #' @param logarithm logical; if TRUE, probabilities p are given as log(p).
 #' @return \code{dsplitt} gives the density; \code{psplitt} gives the percentile;
 #' \code{qsplitt} gives the quantile; and \code{rsplitt} gives the random
-#' variables. Invalid arguments will result in return value NaN, with a warning.
+#' variables. \code{gsplitt} returns a list with elements \code{u} and \code{d}
+#' containing gradients of the CDF and log-density. Invalid arguments will
+#' result in return value NaN, with a warning.
 #'
 #' The numerical arguments other than n are recycled to the length of the
 #' result. Only the first elements of the logical arguments are used.
@@ -122,6 +126,49 @@ dsplitn <- function(x, mu, sigma, lmd, logarithm) {
 #' @export
 dsplitt <- function(x, mu, df, phi, lmd, logarithm) {
     .Call('_dng_dsplitt', PACKAGE = 'dng', x, mu, df, phi, lmd, logarithm)
+}
+
+#' @describeIn splitn Gradients for the split-normal CDF and log-density.
+#' @param y vector of quantiles for gradient evaluation.
+#' @param par list with \code{mu}, \code{sigma}, and \code{lmd} parameter vectors.
+#' @param parCaller character scalar naming the parameter to differentiate:
+#' \code{"mu"}, \code{"sigma"}, or \code{"lmd"}.
+#' @param denscaller character vector selecting gradients to compute. Use
+#' \code{"u"} for the CDF gradient and \code{"d"} for the log-density gradient.
+#' @export
+gsplitn <- function(y, par, parCaller, denscaller) {
+    .Call('_dng_gsplitn', PACKAGE = 'dng', y, par, parCaller, denscaller)
+}
+
+#' Generalized hypergeometric function
+#'
+#' Evaluate generalized hypergeometric series used by the split-t gradient
+#' calculations.
+#'
+#' @param a matrix of upper hypergeometric parameters.
+#' @param b matrix of lower hypergeometric parameters.
+#' @param z vector of hypergeometric function arguments.
+#' @param k maximum number of hypergeometric series terms. Non-positive values
+#' use the package default.
+#' @return A one-column numeric matrix of generalized hypergeometric function
+#' values. Rows of \code{a}, rows of \code{b}, and values of \code{z} are
+#' recycled to the output length.
+#' @seealso \code{\link{gsplitt}()}
+#' @export
+ghypergeo <- function(a, b, z, k) {
+    .Call('_dng_ghypergeo', PACKAGE = 'dng', a, b, z, k)
+}
+
+#' @describeIn splitt Gradients for the split-t CDF and log-density.
+#' @param y vector of quantiles for gradient evaluation.
+#' @param par list with \code{mu}, \code{df}, \code{phi}, and \code{lmd} parameter vectors.
+#' @param parCaller character scalar naming the parameter to differentiate:
+#' \code{"mu"}, \code{"df"}, \code{"phi"}, or \code{"lmd"}.
+#' @param denscaller character vector selecting gradients to compute. Use
+#' \code{"u"} for the CDF gradient and \code{"d"} for the log-density gradient.
+#' @export
+gsplitt <- function(y, par, parCaller, denscaller) {
+    .Call('_dng_gsplitt', PACKAGE = 'dng', y, par, parCaller, denscaller)
 }
 
 #' @describeIn splitn Percentile for the split-normal distribution.

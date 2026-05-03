@@ -3,12 +3,15 @@
 \name{splitt}
 \alias{splitt}
 \alias{dsplitt}
+\alias{gsplitt}
 \alias{psplitt}
 \alias{qsplitt}
 \alias{rsplitt}
 \title{Split-t distribution}
 \usage{
 dsplitt(x, mu, df, phi, lmd, logarithm)
+
+gsplitt(y, par, parCaller, denscaller)
 
 psplitt(q, mu, df, phi, lmd)
 
@@ -30,6 +33,16 @@ symmetric student t distribution.}
 
 \item{logarithm}{logical; if TRUE, probabilities p are given as log(p).}
 
+\item{y}{vector of quantiles for gradient evaluation.}
+
+\item{par}{list with \code{mu}, \code{df}, \code{phi}, and \code{lmd} parameter vectors.}
+
+\item{parCaller}{character scalar naming the parameter to differentiate:
+\code{"mu"}, \code{"df"}, \code{"phi"}, or \code{"lmd"}.}
+
+\item{denscaller}{character vector selecting gradients to compute. Use
+\code{"u"} for the CDF gradient and \code{"d"} for the log-density gradient.}
+
 \item{q}{vector of quantiles.}
 
 \item{p}{vector of probability.}
@@ -39,7 +52,9 @@ symmetric student t distribution.}
 \value{
 \code{dsplitt} gives the density; \code{psplitt} gives the percentile;
 \code{qsplitt} gives the quantile; and \code{rsplitt} gives the random
-variables. Invalid arguments will result in return value NaN, with a warning.
+variables. \code{gsplitt} returns a list with elements \code{u} and \code{d}
+containing gradients of the CDF and log-density. Invalid arguments will
+result in return value NaN, with a warning.
 
 The numerical arguments other than n are recycled to the length of the
 result. Only the first elements of the logical arguments are used.
@@ -61,13 +76,15 @@ Beta(\nu/2,1/2)]^{-1} }is the normalization constant.
 }
 \section{Functions}{
 \itemize{
-\item \code{psplitt}: Percentile for the split-t distribution.
+\item \code{gsplitt()}: Gradients for the split-t CDF and log-density.
 
-\item \code{qsplitt}: Quantile for the split-t distribution.
+\item \code{psplitt()}: Percentile for the split-t distribution.
 
-\item \code{rsplitt}: Randon variables from the split-t distribution.
+\item \code{qsplitt()}: Quantile for the split-t distribution.
+
+\item \code{rsplitt()}: Randon variables from the split-t distribution.
+
 }}
-
 \examples{
 
 n <- 3
